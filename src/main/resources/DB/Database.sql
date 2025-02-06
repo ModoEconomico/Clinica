@@ -28,4 +28,12 @@ CREATE TABLE Administrador (
     FOREIGN KEY (id) REFERENCES Usuario(id)
 )
 
-
+CREATE TABLE Consulta (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    data DATE NOT NULL,
+    hora TIME NOT NULL,
+    medico_id INT NOT NULL,
+    paciente_id INT NOT NULL,
+    FOREIGN KEY (medico_id) REFERENCES Medico(id),
+    FOREIGN KEY (paciente_id) REFERENCES Paciente(id)
+)
