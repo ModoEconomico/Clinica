@@ -1,54 +1,40 @@
 package com.joaovitor.entity;
 
-import com.joaovitor.utils.UserTypeEnum;
 
 public class PatientEntity extends UserEntity{
-
+    private static int contador = 1;
+    private int id;
+    private String nome;
+    private String dataNascimento;
     private String cpf;
-    private String rg;
-    private String address;
-    private String phone;
+    private String telefone;
+    private String email;
+    private String planoSaude;
 
-    public PatientEntity() {
-    }
-
-    public PatientEntity(String name, String email, String password, String cpf, String rg, String address, String phone) {
-        super(name, email, password , UserTypeEnum.PATIENT);
+    public PatientEntity(String nome, String dataNascimento, String cpf, String telefone, String email, String planoSaude) {
+        this.id = contador++;
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
         this.cpf = cpf;
-        this.rg = rg;
-        this.address = address;
-        this.phone = phone;
+        this.telefone = telefone;
+        this.email = email;
+        this.planoSaude = planoSaude;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
+    public int getId() { return id; }
+    public String getNome() { return nome; }
+    public String getCpf() { return cpf; }
+    public void setNome(String nome) { this.nome = nome; }
+    public void setTelefone(String telefone) { this.telefone = telefone; }
+    public void setEmail(String email) { this.email = email; }
+    public void setPlanoSaude(String planoSaude) { this.planoSaude = planoSaude; }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                '}';
     }
 }
