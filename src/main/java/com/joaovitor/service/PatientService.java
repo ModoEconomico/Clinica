@@ -23,7 +23,7 @@ public class PatientService {
     public boolean atualizarPatientEntity(String cpf, String nome, String telefone, String email, String planoSaude) {
         PatientEntity PatientEntity = buscarPatientEntityPorCpf(cpf);
         if (PatientEntity != null) {
-            PatientEntity.setNome(nome);
+            PatientEntity.setName(nome);
             PatientEntity.setTelefone(telefone);
             PatientEntity.setEmail(email);
             PatientEntity.setPlanoSaude(planoSaude);

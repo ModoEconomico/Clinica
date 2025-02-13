@@ -21,9 +21,7 @@ public class SystemService {
     private List<DoctorEntity> medicos = new ArrayList<>();
     private List<QueriesEntity> consultas = new ArrayList<>();
 
-    public void cadastrarPatientEntity(String nome, String dataNascimento, String cpf, String telefone, String email, String planoSaude) {
-        PatientEntitys.add(new PatientEntity(nome, cpf, telefone, email, planoSaude, dataNascimento));
-    }
+   
 
     public void listarPatientEntitys() {
         PatientEntitys.forEach(System.out::println);
