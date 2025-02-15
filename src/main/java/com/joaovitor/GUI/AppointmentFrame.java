@@ -1,4 +1,4 @@
-package com.joaovitor.frame;
+package com.joaovitor.GUI;
 
 import javax.swing.*;
 import java.awt.*;

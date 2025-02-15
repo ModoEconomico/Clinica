@@ -1,20 +1,20 @@
-package com.joaovitor.frame;
+package com.joaovitor.GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import com.joaovitor.controller.PatientController;
-import com.joaovitor.entity.PatientEntity;
+import com.joaovitor.controller.DoctorController;
+import com.joaovitor.entity.DoctorEntity;
 
-public class PatientFrame extends JFrame {
-    private PatientController patientController;
+public class DoctorFrame extends JFrame {
+    private DoctorController doctorController;
 
-    public PatientFrame() {
-        patientController = new PatientController();
+    public DoctorFrame() {
+        doctorController = new DoctorController();
         initUI();
     }
 
     private void initUI() {
-        setTitle("Sistema de Gestão de Consultas Médicas");
+        setTitle("Gerenciamento de Médicos");
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -32,9 +32,9 @@ public class PatientFrame extends JFrame {
         JTextField nameField = new JTextField();
         inputPanel.add(nameField);
 
-        inputPanel.add(new JLabel("Data de Nascimento:"));
-        JTextField birthDateField = new JTextField();
-        inputPanel.add(birthDateField);
+        inputPanel.add(new JLabel("CRM:"));
+        JTextField crmField = new JTextField();
+        inputPanel.add(crmField);
 
         inputPanel.add(new JLabel("CPF:"));
         JTextField cpfField = new JTextField();
@@ -48,24 +48,23 @@ public class PatientFrame extends JFrame {
         JTextField emailField = new JTextField();
         inputPanel.add(emailField);
 
-        inputPanel.add(new JLabel("Plano de Saúde:"));
-        JTextField healthPlanField = new JTextField();
-        inputPanel.add(healthPlanField);
+        inputPanel.add(new JLabel("Especialidade:"));
+        JTextField specialtyField = new JTextField();
+        inputPanel.add(specialtyField);
 
         panel.add(inputPanel, BorderLayout.NORTH);
 
-        JButton addButton = new JButton("Adicionar Paciente");
+        JButton addButton = new JButton("Adicionar Médico");
         addButton.addActionListener(e -> {
-            PatientEntity patient = new PatientEntity();
-            patient.setName(nameField.getText());
-            patient.setDataNascimento(birthDateField.getText());
-            patient.setCpf(cpfField.getText());
-            patient.setTelefone(phoneField.getText());
-            patient.setEmail(emailField.getText());
-            patient.setPlanoSaude(healthPlanField.getText());
+            DoctorEntity doctor = new DoctorEntity();
+            doctor.setName(nameField.getText());
+            doctor.setCrm(crmField.getText());
+            doctor.setCrm(cpfField.getText());
+            doctor.setEmail(emailField.getText());
+            doctor.setSpecialty(specialtyField.getText());
 
-            patientController.addPatient(patient);
-            textArea.append("Paciente adicionado: " + patient.getName() + "\n");
+            doctorController.addDoctor(doctor);
+            textArea.append("Médico adicionado: " + doctor.getName() + "\n");
         });
 
         JButton backButton = new JButton("Voltar");
@@ -87,7 +86,7 @@ public class PatientFrame extends JFrame {
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            PatientFrame ex = new PatientFrame();
+            DoctorFrame ex = new DoctorFrame();
             ex.setVisible(true);
         });
     }

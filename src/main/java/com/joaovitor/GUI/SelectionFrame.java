@@ -1,4 +1,4 @@
-package com.joaovitor.frame;
+package com.joaovitor.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ public class SelectionFrame extends JFrame {
 
         JButton patientButton = new JButton("Gerenciamento de Pacientes");
         patientButton.addActionListener(e -> {
-            PatientFrame mainFrame = new PatientFrame();
+            PatientFrame mainFrame = new PatientFrame() ;
             mainFrame.setVisible(true);
         });
 
