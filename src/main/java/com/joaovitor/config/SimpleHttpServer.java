@@ -51,7 +51,7 @@ class AddDoctorHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         if ("POST".equals(exchange.getRequestMethod())) {
-            String response = "✅ Médico cadastrado com sucesso!";
+            String response = "Médico cadastrado com sucesso!";
             exchange.sendResponseHeaders(200, response.length());
             OutputStream os = exchange.getResponseBody();
             os.write(response.getBytes(StandardCharsets.UTF_8));
@@ -66,7 +66,7 @@ class AddAppointmentHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         if ("POST".equals(exchange.getRequestMethod())) {
-            String response = "✅ Consulta cadastrada com sucesso!";
+            String response = "Consulta cadastrada com sucesso!";
             exchange.sendResponseHeaders(200, response.length());
             OutputStream os = exchange.getResponseBody();
             os.write(response.getBytes(StandardCharsets.UTF_8));
