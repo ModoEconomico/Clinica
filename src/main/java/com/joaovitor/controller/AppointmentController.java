@@ -11,24 +11,24 @@ public class AppointmentController {
 
     public void addAppointment(AppointmentEntity appointment) {
         try (Connection conn = DataBaseUtil.getConnection()) {
-            
+
             String createTable = """
-                CREATE TABLE IF NOT EXISTS appointments (
-                  id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  doctorCrm TEXT NOT NULL,
-                  doctorName TEXT,
-                  patientCpf TEXT NOT NULL,
-                  appointmentDate TEXT NOT NULL,
-                  appointmentTime TEXT NOT NULL
-                )
-            """;
+                        CREATE TABLE IF NOT EXISTS appointments (
+                          id INTEGER PRIMARY KEY AUTOINCREMENT,
+                          doctorCrm TEXT NOT NULL,
+                          doctorName TEXT,
+                          patientCpf TEXT NOT NULL,
+                          appointmentDate TEXT NOT NULL,
+                          appointmentTime TEXT NOT NULL
+                        )
+                    """;
             conn.createStatement().execute(createTable);
 
             String sql = """
-                INSERT INTO appointments
-                (doctorCrm, doctorName, patientCpf, appointmentDate, appointmentTime)
-                VALUES (?, ?, ?, ?, ?)
-            """;
+                        INSERT INTO appointments
+                        (doctorCrm, doctorName, patientCpf, appointmentDate, appointmentTime)
+                        VALUES (?, ?, ?, ?, ?)
+                    """;
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, appointment.getDoctorCrm());
             stmt.setString(2, appointment.getDoctorName());
@@ -67,20 +67,22 @@ public class AppointmentController {
     }
 
     /**
-     * UPDATE - Atualiza os dados de uma consulta identificada por (doctorCrm, appointmentDate, appointmentTime).
+     * UPDATE - Atualiza os dados de uma consulta identificada por (doctorCrm,
+     * appointmentDate, appointmentTime).
+     * 
      * @param oldDoctorCrm       CRM do médico (valor antigo)
      * @param oldAppointmentDate Data da consulta (valor antigo)
      * @param oldAppointmentTime Horário da consulta (valor antigo)
      * @param updatedApp         Objeto com os novos valores
      */
     public void updateAppointment(String oldDoctorCrm, String oldAppointmentDate, String oldAppointmentTime,
-                                  AppointmentEntity updatedApp) {
+            AppointmentEntity updatedApp) {
         try (Connection conn = DataBaseUtil.getConnection()) {
             String sql = """
-                UPDATE appointments
-                SET doctorCrm = ?, doctorName = ?, patientCpf = ?, appointmentDate = ?, appointmentTime = ?
-                WHERE doctorCrm = ? AND appointmentDate = ? AND appointmentTime = ?
-            """;
+                        UPDATE appointments
+                        SET doctorCrm = ?, doctorName = ?, patientCpf = ?, appointmentDate = ?, appointmentTime = ?
+                        WHERE doctorCrm = ? AND appointmentDate = ? AND appointmentTime = ?
+                    """;
             PreparedStatement stmt = conn.prepareStatement(sql);
             // Novos valores
             stmt.setString(1, updatedApp.getDoctorCrm());
@@ -97,7 +99,7 @@ public class AppointmentController {
                 System.out.println("Consulta atualizada com sucesso!");
             } else {
                 System.out.println("Nenhuma consulta encontrada com (CRM, Data, Hora) = (" +
-                                   oldDoctorCrm + ", " + oldAppointmentDate + ", " + oldAppointmentTime + ")");
+                        oldDoctorCrm + ", " + oldAppointmentDate + ", " + oldAppointmentTime + ")");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -107,9 +109,9 @@ public class AppointmentController {
     public void deleteAppointment(String doctorCrm, String appointmentDate, String appointmentTime) {
         try (Connection conn = DataBaseUtil.getConnection()) {
             String sql = """
-                DELETE FROM appointments
-                WHERE doctorCrm = ? AND appointmentDate = ? AND appointmentTime = ?
-            """;
+                        DELETE FROM appointments
+                        WHERE doctorCrm = ? AND appointmentDate = ? AND appointmentTime = ?
+                    """;
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, doctorCrm);
             stmt.setString(2, appointmentDate);
@@ -120,7 +122,7 @@ public class AppointmentController {
                 System.out.println("Consulta deletada com sucesso!");
             } else {
                 System.out.println("Nenhuma consulta encontrada com (CRM, Data, Hora) = (" +
-                                   doctorCrm + ", " + appointmentDate + ", " + appointmentTime + ")");
+                        doctorCrm + ", " + appointmentDate + ", " + appointmentTime + ")");
             }
         } catch (SQLException e) {
             e.printStackTrace();
